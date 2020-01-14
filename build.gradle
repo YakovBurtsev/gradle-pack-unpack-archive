@@ -1,0 +1,15 @@
+plugins {
+    id 'base'
+}
+
+task pack(type: Zip) {
+    from("$projectDir") {
+        include "reports/**"
+    }
+}
+
+task unpack(type: Copy) {
+    def path = "$buildDir/$distsDirName/$archivesBaseName" + ".zip"
+    from zipTree(path)
+    into "$buildDir"
+}
